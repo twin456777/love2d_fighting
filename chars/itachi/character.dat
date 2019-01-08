@@ -1,11 +1,27 @@
 <head>
 
 name: Itachi
+head: "chars/itachi/sprites/small.png"
 type: character
 
 physic: true
 collision: true
 shadow: true
+
+start_animation: {
+	file: "chars/itachi/sprites/start_animation.png"
+	w: 90 h: 90
+	row: 6 col: 1
+	centerx: 47 centery: 85
+	wait: 4
+}
+start_standing: {
+	file: "chars/itachi/sprites/start_standing.png"
+	w: 90 h: 90
+	row: 6 col: 1
+	centerx: 47 centery: 85
+	wait: 5
+}
 
 sprite: {
 	file: "chars/itachi/sprites/main.png"
