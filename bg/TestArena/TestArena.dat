@@ -6,6 +6,7 @@ height: 1633
 
 border_up: 1350
 border_down: 1550
+objects_stock: 25
 
 reflection: true
 reflection_opacity: 0.3
