@@ -1,5 +1,6 @@
 <head>
 name: Kakashi
+face: "chars/kakashi/sprites/avatar.png"
 head: "chars/kakashi/sprites/small.png"
 type: character
 
