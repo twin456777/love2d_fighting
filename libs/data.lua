@@ -1,12 +1,6 @@
-data = {}
+local data = {}
 
-	data.entities = {}
-	data.characters_list = {}
-	data.maps_list = {}
-	data.maps = {}
-	data.frames = {}
-	data.dtypes = {}
-	data.system = {}
+	local datParser = require("libs.parsers.dat")
 
 	function data:loadStates()
 		self.states = helper.requireAllFromFolder(settings.global.statesFolder)
@@ -24,32 +18,28 @@ data = {}
 		self.locales = helper.requireAllFromFolder(settings.global.localesFolder)
 	end
 
+	function data:loadFrames()
+		self.frames = datParser:parseFile(settings.global.frames)
+	end
 
-	--[[function data:States(dirPath)
-		self.states = {}
-		local states_list = love.filesystem.getDirectoryItems(dirPath)
-		for i = 1, #states_list do
-			local state_number = string.gsub(states_list[i], ".lua", "")
-			if state_number ~= nil and tonumber(state_number) then
-				self.states[state_number] = require(dirPath .. "." .. state_number)
-				if self.states[state_number].Update ~= nil then
-					data.states_update[state_number] = data.states[state_number]
-				end
-			end
-		end
+	function data:loadSystem()
+		self.system = datParser:parseFile(settings.global.system)
+	end
+
+	function data:loadCombos()
+		self.combos = datParser:parseFile(settings.global.combos)
+	end
+
+	function data:loadDtypes()
+		self.dtypes = datParser:parseFile(settings.global.dtypes)
+	end
+
+	function data:loadData()
+		self.list = datParser:parseFile(settings.global.data)
 	end
 
 
-	function data:Kinds(dirPath)
-		self.kinds = {}
-		local itrs_list = love.filesystem.getDirectoryItems(dirPath)
-		for i = 1, #itrs_list do
-			local kind_number = string.gsub(itrs_list[i], ".lua", "")
-			if kind_number ~= nil and tonumber(kind_number) then
-				self.kinds[tonumber(kind_number)] = require(dirPath .. "." .. kind_number)
-			end
-		end
-	end
+	--[[
 
 
 	function data:System(filePath)
