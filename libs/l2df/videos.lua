@@ -1,5 +1,5 @@
 local videos = { }
-	
+
 	videos.list = { }
 
 	function videos.load(file_path)
@@ -18,17 +18,12 @@ local videos = { }
 		return video
 	end
 
-	function videos.draw(video, x, y, stretch, facing, size, r,g,b,a, other)
-		stretch = stretch or false
-		facing = facing ~= 0 and facing or 1
+	function videos.draw(video, x, y, size, facing, r, g, b, a, other)
+		facing = facing and facing < 0 and -1 or 1
 		other = other or { r = 0, ox = 0, oy = 0, kx = 0, ky = 0 }
 
-		local w = size and size.width or size or 1
-		local h = size and size.height or size or 1
-		if stretch then
-			w = w * settings.gameWidth / video.width
-			h = h * settings.gameHeight / video.height
-		end
+		local w = size and size.width or tonumber(size) or 1
+		local h = size and size.height or tonumber(size) or 1
 
 		local ro, go, bo, ao = love.graphics.getColor()
 		love.graphics.setColor(r or ro, g or go, b or bo, a or ao)
